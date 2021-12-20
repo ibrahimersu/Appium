@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -47,6 +48,13 @@ public class EtsyTest {
         By textMsgsBy = By.id("com.etsy.android:id/message");
         List<MobileElement> elements = driver.findElements(textMsgsBy);
         elements.forEach(element -> System.out.println(element.getText()));
+
+        By headerBy = By.xpath("(//*[@resource-id='com.etsy.android:id/message'])[1]");
+
+        String expected = "What's your style?";
+        String actual = driver.findElement(headerBy).getText();
+
+        Assertions.assertEquals(expected, actual, "Header text is not correct");
     }
 
     @AfterEach
