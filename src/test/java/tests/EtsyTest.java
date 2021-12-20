@@ -6,6 +6,7 @@ import io.appium.java_client.android.AndroidDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -13,12 +14,17 @@ import java.net.URL;
 
 public class EtsyTest {
     AppiumDriver<MobileElement> driver;
+    String email = "areatha@uspeakw.com";
+    String password = "Cybertek2020";
+
+    /**
+     * user.email=areatha@uspeakw.com
+     * user.password=Cybertek2020
+     */
 
     @BeforeEach
     public void setup() throws MalformedURLException {
         DesiredCapabilities caps = new DesiredCapabilities();
-        //we can specify capability name with MobileCapabilityType class
-        //we also have AndroidMobileCapabilityType that is used to specify Android specific capabilities
         caps.setCapability("deviceName", "Pixel 3");
         caps.setCapability("platformName", "Android");
         caps.setCapability("platformVersion", "10");
@@ -29,8 +35,14 @@ public class EtsyTest {
     }
 
     @Test
-    public void test1() {
-        
+    public void test1() throws InterruptedException {
+        Thread.sleep(3000);
+        driver.findElement(By.id("com.etsy.android:id/btn_link")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.id("com.etsy.android:id/edit_username")).sendKeys(email);
+        driver.findElement(By.id("com.etsy.android:id/edit_password")).sendKeys(password);
+        driver.findElement(By.id("com.etsy.android:id/button_signin")).click();
+        Thread.sleep(2000);
     }
 
     @AfterEach
