@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class EtsyTest {
     AppiumDriver<MobileElement> driver;
@@ -43,6 +44,9 @@ public class EtsyTest {
         driver.findElement(By.id("com.etsy.android:id/edit_password")).sendKeys(password);
         driver.findElement(By.id("com.etsy.android:id/button_signin")).click();
         Thread.sleep(2000);
+        By textMsgsBy = By.id("com.etsy.android:id/message");
+        List<MobileElement> elements = driver.findElements(textMsgsBy);
+        elements.forEach(element -> System.out.println(element.getText()));
     }
 
     @AfterEach
