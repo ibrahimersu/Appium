@@ -4,9 +4,13 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -19,6 +23,7 @@ public class FirstTest {
     public void test1() throws MalformedURLException, InterruptedException {
         DesiredCapabilities caps = new DesiredCapabilities();
         //we can specify capability name with MobileCapabilityType class
+        //we also have AndroidMobileCapabilityType that is used to specify Android specific capabilities
         caps.setCapability("deviceName", "Pixel 3");
         caps.setCapability("platformName", "Android");
         caps.setCapability("platformVersion", "10");
@@ -46,10 +51,13 @@ public class FirstTest {
         Thread.sleep(3000);
         driver.findElement(MobileBy.AccessibilityId("equals")).click();
         Thread.sleep(3000);
+        //How do I know should I use MobileBy or By?
+        //MobileBy has all the locators available in By class AND MORE.
 
-        String expected = "21";
+        String expected = "20";
         By resultBy = By.id("com.google.android.calculator:id/result_final");
-        String actualResult = driver.findElement(resultBy).getText();
+        MobileElement resultElement = driver.findElement(resultBy);
+        String actualResult = resultElement.getText();
 
         Assertions.assertEquals(expected, actualResult, "result is not correct");
         driver.closeApp();
