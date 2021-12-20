@@ -4,6 +4,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -46,6 +47,11 @@ public class FirstTest {
         driver.findElement(MobileBy.AccessibilityId("equals")).click();
         Thread.sleep(3000);
 
+        String expected = "21";
+        By resultBy = By.id("com.google.android.calculator:id/result_final");
+        String actualResult = driver.findElement(resultBy).getText();
+
+        Assertions.assertEquals(expected, actualResult, "result is not correct");
         driver.closeApp();
     }
 }
