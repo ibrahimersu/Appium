@@ -2,6 +2,7 @@ package tests;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -21,7 +22,7 @@ public class FirstTest {
         caps.setCapability("automationName", "UiAutomator2");
         caps.setCapability("app", "https://cybertek-appium.s3.amazonaws.com/calculator.apk");
         URL url = new URL("http://localhost:4723/wd/hub");
-        driver = new AppiumDriver<>(url, caps);
+        driver = new AndroidDriver<>(url, caps);
         driver.findElement(By.xpath("//*[@text='1']")).click();
         Thread.sleep(3000);
         driver.closeApp();
