@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Assertions;
 import pages.HomePage;
 import pages.LoginPage;
 
-import java.util.Locale;
-
 public class LoginStepDefinitions {
     LoginPage loginPage = new LoginPage();
     HomePage homePage = new HomePage();
@@ -35,7 +33,8 @@ public class LoginStepDefinitions {
     @Then("user verifies that every search result contains {string}")
     public void user_verifies_that_every_search_result_contains(String string) {
         for (String r : homePage.getSearchResultTexts()) {
-            Assertions.assertTrue(r.toLowerCase().contains(string), "Expected: " + string + ", Actual: " + r);
+            Assertions.assertTrue(r.toLowerCase().contains(string),
+                    "Expected: " + string + ", Actual: " + r);
         }
     }
 }
