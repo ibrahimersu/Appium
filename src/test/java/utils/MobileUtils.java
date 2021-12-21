@@ -159,9 +159,6 @@ public class MobileUtils {
         }
     }
 
-
-
-
     public enum Direction {
         UP,
         DOWN,
