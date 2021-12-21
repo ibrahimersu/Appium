@@ -50,6 +50,6 @@ public class HomePage {
         // :: - method reference  ClassName::method
         // map(MobileElement::getText). -- apply getText method from MobileElement class to every element of the collection
         //  collect(Collectors.toList()); - create a new collection for elements
-        return searchResults.stream().map(RemoteWebElement::getText).collect(Collectors.toList());
+        return searchResults.stream().map(MobileElement::getText).collect(Collectors.toList());
     }
 }
