@@ -3,10 +3,15 @@ package step_definitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
+import pages.HomePage;
 import pages.LoginPage;
+
+import java.util.Locale;
 
 public class LoginStepDefinitions {
     LoginPage loginPage = new LoginPage();
+    HomePage homePage = new HomePage();
 
     @Given("print hello world")
     public void print_hello_world() {}
@@ -23,11 +28,14 @@ public class LoginStepDefinitions {
 
     @When("user searches for {string}")
     public void user_searches_for(String string) {
-
+        homePage.searchFor(string);
     }
 
     @Then("user verifies that every search result contains {string}")
     public void user_verifies_that_every_search_result_contains(String string) {
-
+        homePage.getSearchResultTexts().forEach(r -> {
+            Assertions.assertTrue(r.toLowerCase().
+                    contains(string), "Expected: " + string + ", Actual: " + r);
+        });
     }
 }
