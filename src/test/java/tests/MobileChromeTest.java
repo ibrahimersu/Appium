@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -34,7 +35,13 @@ public class MobileChromeTest {
         driver.findElement(By.xpath("//*[contains(text(),'Fleet') and contains(@class,'title-level-1')]")).click();
         Thread.sleep(3000);
         driver.findElement(By.cssSelector("[href$='Carreservation']")).click();
-        Thread.sleep(3000);
+
+        Thread.sleep(5000);
+
+        String expected = "All Cars";
+        String actual = driver.findElement(By.className("oro-subtitle")).getText();
+
+        Assertions.assertEquals(expected, actual, "Page title is not correct!");
         driver.quit();
     }
 }
