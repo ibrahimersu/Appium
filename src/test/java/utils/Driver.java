@@ -13,8 +13,7 @@ public class Driver {
     private static URL url;
     private static DesiredCapabilities caps;
 
-    private Driver() {
-    }
+    private Driver() {}
 
     public static AppiumDriver<MobileElement> getDriver() {
         if (driver == null) {
