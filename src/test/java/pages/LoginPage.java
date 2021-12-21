@@ -17,9 +17,12 @@ public class LoginPage {
     @AndroidFindBy(id = "com.etsy.android:id/button_signin")
     private MobileElement signInBtn;
 
+    @AndroidFindBy(id = "com.etsy.android:id/btn_link")
+    private MobileElement getStartedBtn;
+
     public LoginPage (){
         //PageFactory - we use it to enable @FindBy
-        //AppiumFieldDecorator - we use it to enable mobile annotations: @MobileFindBy ...
+        //AppiumFieldDecorator - we use it to enable mobile annotations: @AndroidFindBy, iOSXCUITFindBy  ...
         PageFactory.initElements(new AppiumFieldDecorator(Driver.getDriver()), this);
     }
 }
