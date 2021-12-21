@@ -12,7 +12,7 @@ import java.net.URL;
 public class MobileChromeTest {
 
     @Test
-    public void test() throws MalformedURLException {
+    public void test() throws MalformedURLException, InterruptedException {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platformName", "android");
         caps.setCapability("platformVersion", "10");
@@ -20,5 +20,10 @@ public class MobileChromeTest {
         caps.setCapability("browserName", BrowserType.CHROME);
         URL url = new URL("http://localhost:4723/wd/hub");
         WebDriver driver = new RemoteWebDriver(url, caps);
+
+        driver.get("http://qa1.vytrack.com");
+        Thread.sleep(3000);
+
+        driver.quit();
     }
 }
