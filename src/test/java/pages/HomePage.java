@@ -3,6 +3,8 @@ package pages;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.cucumber.java.an.E;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 import utils.Driver;
@@ -32,8 +34,18 @@ public class HomePage {
         MobileUtils.waitFor(4000);
         MobileUtils.clickWithWait(searchIcon);
 
-        MobileUtils.waitFor(2000);
-        searchInput.sendKeys(text);
+        MobileUtils.waitFor(4000);
+//        searchInput.sendKeys(text);
+        int counter = 1;
+        do {
+            try {
+                Driver.getDriver().findElement(By.xpath("com.etsy.android:id/search_src_text")).sendKeys(text);
+                break;
+            } catch (Exception e){
+                System.out.println("failed to enter text. attempt :: " + counter);
+                MobileUtils.waitFor(500);
+            }
+        } while (++counter < 10);
 
         MobileUtils.waitFor(2000);
         prepopulatedSearchResults.get(0).click();
