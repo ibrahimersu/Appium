@@ -18,6 +18,9 @@ public class HomePage {
     @AndroidFindBy(id = "com.etsy.android:id/listing_title")
     private List<MobileElement> searchResults;
 
+    @AndroidFindBy(id = "com.etsy.android:id/query_text")
+    private List<MobileElement> prepopulatedSearchResults;
+
     public HomePage(){
         PageFactory.initElements(new AppiumFieldDecorator(Driver.getDriver()), this);
     }
