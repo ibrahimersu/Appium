@@ -3,6 +3,7 @@ package pages;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 import utils.Driver;
 import utils.MobileUtils;
@@ -40,8 +41,15 @@ public class HomePage {
         MobileUtils.waitFor(4000);
     }
 
+    /**
+     * This method returns collection of search result titles.
+     * @return collections of search result titles
+     */
     public List<String> getSearchResultTexts(){
         MobileUtils.waitFor(4000);
-        return searchResults.stream().map(MobileElement::getText).collect(Collectors.toList());
+        // :: - method reference  ClassName::method
+        // map(MobileElement::getText). -- apply getText method from MobileElement class to every element of the collection
+        //  collect(Collectors.toList()); - create a new collection for elements
+        return searchResults.stream().map(RemoteWebElement::getText).collect(Collectors.toList());
     }
 }
