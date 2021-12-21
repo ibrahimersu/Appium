@@ -26,6 +26,9 @@ public class MobileChromeTest {
         driver.get("http://qa1.vytrack.com");
         driver.findElement(By.id("prependedInput")).sendKeys("storemanager85");
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
+        driver.findElement(By.id("_submit")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.id("main-menu-toggle")).click();
         Thread.sleep(3000);
 
         driver.quit();
