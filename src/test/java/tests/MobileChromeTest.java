@@ -33,6 +33,8 @@ public class MobileChromeTest {
         Thread.sleep(3000);
         driver.findElement(By.xpath("//*[contains(text(),'Fleet') and contains(@class,'title-level-1')]")).click();
         Thread.sleep(3000);
+        driver.findElement(By.cssSelector("[href$='Carreservation']")).click();
+        Thread.sleep(3000);
         driver.quit();
     }
 }
