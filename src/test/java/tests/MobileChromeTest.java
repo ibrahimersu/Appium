@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -18,10 +19,13 @@ public class MobileChromeTest {
         caps.setCapability("platformVersion", "10");
         caps.setCapability("deviceName", "Pixel 3");
         caps.setCapability("browserName", BrowserType.CHROME);
+
         URL url = new URL("http://localhost:4723/wd/hub");
         WebDriver driver = new RemoteWebDriver(url, caps);
 
         driver.get("http://qa1.vytrack.com");
+        driver.findElement(By.id("prependedInput")).sendKeys("storemanager85");
+        driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
         Thread.sleep(3000);
 
         driver.quit();
