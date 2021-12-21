@@ -14,7 +14,8 @@ public class LoginStepDefinitions {
     HomePage homePage = new HomePage();
 
     @Given("print hello world")
-    public void print_hello_world() {}
+    public void print_hello_world() {
+    }
 
     @Given("user clicks on get started button")
     public void user_clicks_on_get_started_button() {
@@ -33,9 +34,8 @@ public class LoginStepDefinitions {
 
     @Then("user verifies that every search result contains {string}")
     public void user_verifies_that_every_search_result_contains(String string) {
-        homePage.getSearchResultTexts().forEach(r -> {
-            Assertions.assertTrue(r.toLowerCase().
-                    contains(string), "Expected: " + string + ", Actual: " + r);
-        });
+        for (String r : homePage.getSearchResultTexts()) {
+            Assertions.assertTrue(r.toLowerCase().contains(string), "Expected: " + string + ", Actual: " + r);
+        }
     }
 }
