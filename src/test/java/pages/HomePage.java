@@ -4,7 +4,9 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import io.cucumber.java.an.E;
+import io.cucumber.java.bs.A;
 import org.openqa.selenium.By;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 import utils.Driver;
@@ -35,11 +37,13 @@ public class HomePage {
         MobileUtils.clickWithWait(searchIcon);
 
         MobileUtils.waitFor(4000);
+        Actions actions = new Actions(Driver.getDriver());
 //        searchInput.sendKeys(text);
         int counter = 1;
         do {
             try {
-                Driver.getDriver().findElement(By.xpath("com.etsy.android:id/search_src_text")).sendKeys(text);
+                MobileElement e = Driver.getDriver().findElement(By.xpath("com.etsy.android:id/search_src_text"));
+                actions.sendKeys(e, text).perform();
                 break;
             } catch (Exception e){
                 System.out.println("failed to enter text. attempt :: " + counter);
