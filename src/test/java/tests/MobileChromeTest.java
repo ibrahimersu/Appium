@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -25,12 +26,13 @@ public class MobileChromeTest {
 
         driver.get("http://qa1.vytrack.com");
         driver.findElement(By.id("prependedInput")).sendKeys("storemanager85");
-        driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
-        driver.findElement(By.id("_submit")).click();
+        driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123", Keys.ENTER);
+//        driver.findElement(By.id("_submit")).click();
         Thread.sleep(3000);
         driver.findElement(By.id("main-menu-toggle")).click();
         Thread.sleep(3000);
-
+        driver.findElement(By.xpath("//*[contains(text(),'Fleet') and contains(@class,'title-level-1')]")).click();
+        Thread.sleep(3000);
         driver.quit();
     }
 }
