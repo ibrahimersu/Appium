@@ -10,19 +10,20 @@ import java.net.URL;
 
 public class Driver {
     private static AppiumDriver<MobileElement> driver;
+    private static URL url;
+    private static DesiredCapabilities caps;
 
     private Driver() {
     }
 
     public static AppiumDriver<MobileElement> getDriver() {
         if (driver == null) {
-            DesiredCapabilities caps = new DesiredCapabilities();
+            caps = new DesiredCapabilities();
             caps.setCapability("deviceName", "Pixel 3");
             caps.setCapability("platformName", "Android");
             caps.setCapability("platformVersion", "10");
             caps.setCapability("automationName", "UiAutomator2");
             caps.setCapability("app", "https://cybertek-appium.s3.amazonaws.com/etsy.apk");
-            URL url = null;
             try {
                 url = new URL("http://localhost:4723/wd/hub");
                 driver = new AndroidDriver<>(url, caps);
