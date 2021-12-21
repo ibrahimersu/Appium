@@ -5,6 +5,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.support.PageFactory;
+import utils.ConfigReader;
 import utils.Driver;
 import utils.MobileUtils;
 
@@ -32,8 +33,8 @@ public class LoginPage {
     }
 
     public void login(){
-        String username = "";
-        String password = "";
+        String username = ConfigReader.getProperty("user.email");
+        String password = ConfigReader.getProperty("user.password");
         MobileUtils.waitFor(4000);
         this.username.sendKeys(username);
         this.password.sendKeys(password);
